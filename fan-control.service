@@ -1,0 +1,14 @@
+[Unit]
+Description=PWM Fan Control
+# Wait for sysfs and the PWM subsystem to be fully ready
+After=sysinit.target systemd-udevd.service
+Wants=systemd-udevd.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/fan-control.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
